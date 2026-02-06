@@ -1,13 +1,13 @@
 // src/core/GameEngine.ts
 import { Deck } from './Deck';
 import { HandEvaluator } from './Evaluator';
-import type {Card} from './types';
+import type {PlayCard} from './types';
 
 export class GameEngine {
     deck: Deck;
-    playerHand: Card[] = [];
-    dealerHand: Card[] = [];
-    communityCards: Card[] = [];
+    playerHand: PlayCard[] = [];
+    dealerHand: PlayCard[] = [];
+    communityCards: PlayCard[] = [];
 
     constructor() {
         this.deck = new Deck();

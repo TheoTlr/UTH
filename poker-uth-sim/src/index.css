@@ -16,6 +16,13 @@
   .btn-highlight {
     @apply bg-gold hover:bg-yellow-500 text-black font-black py-3 px-10 rounded-xl shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all active:scale-95 uppercase tracking-tighter;
   }
+  .btn-mise {
+    background-color: #0F172A !important;
+    height: 24px !important;
+    color: white !important;
+    font-weight: bold !important;
+    padding: 0 !important;
+  }
 }
 
 :root {

@@ -1,7 +1,7 @@
-import type {Card, Suit, Rank} from './types';
+import type {PlayCard, Suit, Rank} from './types';
 
 export class Deck {
-    private cards: Card[] = [];
+    private cards: PlayCard[] = [];
 
     constructor() {
         this.reset();
@@ -35,7 +35,7 @@ export class Deck {
     }
 
     // Tire une carte du dessus du paquet
-    draw(): Card | undefined {
+    draw(): PlayCard | undefined {
         return this.cards.pop();
     }
 

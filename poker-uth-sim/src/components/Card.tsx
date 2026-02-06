@@ -23,7 +23,7 @@ const getPips = (rank: string) => {
     // Mapping des positions sur une grille imaginaire
     switch (num) {
         case 2: return ["center-30", "center-70"];
-        case 3: return ["center-30", "center-50", "center-70"];
+        case 3: return ["center-10", "center-50", "center-90"];
         case 4: return ["left-20", "left-80", "right-20", "right-80"];
         case 5: return ["left-20", "left-80", "center-50", "right-20", "right-80"];
         case 6: return ["left-10", "left-50", "left-90", "right-10", "right-50", "right-90"];
@@ -93,6 +93,7 @@ function getPositionClass(pos: string) {
         "right-0": "top-[0%] left-[80%]",
         "left-10": "top-[10%] left-[20%]",
         "right-10": "top-[10%] left-[80%]",
+        "center-10": "top-[10%] left-[50%]",
         "left-20": "top-[20%] left-[20%]",
         "right-20": "top-[20%] left-[80%]",
         "left-30": "top-[30%] left-[20%]",
@@ -114,6 +115,7 @@ function getPositionClass(pos: string) {
         "right-80": "top-[80%] left-[80%]",
         "left-90": "top-[90%] left-[20%]",
         "right-90": "top-[90%] left-[80%]",
+        "center-90": "top-[90%] left-[50%]",
         "left-100": "top-[100%] left-[20%]",
         "right-100": "top-[100%] left-[80%]",
     };

@@ -1,10 +1,10 @@
-import {type Card, HandRank} from './types';
+import {type PlayCard, HandRank} from './types';
 
 
 export class HandEvaluator {
 
     // Analyse une main de 5 cartes
-    static evaluate(cards: Card[]): { rank: HandRank, value: number } {
+    static evaluate(cards: PlayCard[]): { rank: HandRank, value: number } {
         const ranks = cards.map(c => c.rank).sort((a, b) => b - a);
         const suits = cards.map(c => c.suit);
 
@@ -50,8 +50,8 @@ export class HandEvaluator {
         return false;
     }
 
-    static getBestHand(allSevenCards: Card[]) {
-        let bestResult = { rank: -1, value: -1, cards: [] as Card[] };
+    static getBestHand(allSevenCards: PlayCard[]) {
+        let bestResult = { rank: -1, value: -1, cards: [] as PlayCard[] };
 
         // Génère toutes les combinaisons de 5 parmi 7
         const combinations = this.getCombinations(allSevenCards, 5);
@@ -67,10 +67,10 @@ export class HandEvaluator {
     }
 
     // Algorithme récursif pour générer les combinaisons
-    private static getCombinations(array: Card[], size: number): Card[][] {
-        const result: Card[][] = [];
+    private static getCombinations(array: PlayCard[], size: number): PlayCard[][] {
+        const result: PlayCard[][] = [];
 
-        const helper = (start: number, currentCombo: Card[]) => {
+        const helper = (start: number, currentCombo: PlayCard[]) => {
             if (currentCombo.length === size) {
                 result.push([...currentCombo]);
                 return;
