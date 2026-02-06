@@ -68,19 +68,12 @@ export default function App() {
 
                     </div>
 
-                    <div className="w-full row-span-1  border border-white/10 rounded-3xl p-6 backdrop-blur-md flex flex-col justify-between">
-                        <div className="flex justify-between items-center">
-                            <h2 className="text-xs font-black uppercase tracking-widest text-gold">Mises</h2>
-                            {/* Affichage de la Bankroll en haut à droite du bloc */}
-                            <div className="flex flex-col items-end">
-                                <span className="text-[10px] text-white/30 uppercase font-bold tracking-tighter">Votre Solde</span>
-                                <span className="text-lg font-mono font-black text-white">{bankroll.toLocaleString()} €</span>
-                            </div>
-                        </div>
+                    <div className="w-full row-span-1  border border-white/10 rounded-3xl p-6 backdrop-blur-md flex flex-col gap-3">
 
-                        <div className="relative flex flex-col items-center gap-4 py-2">
+                        <div className="flex flex-row items-center py-2 h-full">
+                            <div className="w-45 grid grid-rows-3  h-full">
                                 {/* 1. Zone TRIPS */}
-                                <div className="flex justify-center">
+                                <div className="flex row-span-1  justify-center items-center">
                                     <BetCircle
                                         label="TRIPS"
                                         isRhombus={true}
@@ -91,17 +84,40 @@ export default function App() {
                                 </div>
 
                                 {/* 2. Zone ANTE & BLIND */}
-                                <div className="flex justify-center items-center gap-2 -mt-2">
+                                <div className="flex row-span-1  justify-center items-center">
                                     <BetCircle
                                         label="ANTE"
                                         amount={ante}
                                         color="border-white text-white opacity-70"
                                     />
+                                </div>
 
-                                    <div className="text-2xl font-black text-white/40">
-                                        =
+                                {/* 3. Zone PLAY */}
+                                <div className="flex row-span-1  justify-center items-center">
+                                    <BetCircle
+                                        label="PLAY"
+                                        amount={playBet}
+                                        color="border-gold text-gold shadow-[0_0_20px_rgba(212,175,55,0.2)]"
+                                    />
+                                </div>
+                            </div>
+                            <div className="w-45 grid grid-rows-3  h-full">
+                                <div className="flex w-45 row-span-1 justify-start">
+                                    <div className="w-10 flex items-center justify-center">
+                                        <span className="text-red-700 text-[25px] transform -rotate-90 uppercase font-bold tracking-tighter whitespace-nowrap"> T R I P S </span>
                                     </div>
+                                    <div className="flex flex-col justify-center">
+                                        <span className="text-[10px]"> Royal Flush ----- 50 to 1 </span>
+                                        <span className="text-[10px]"> Straight Flush -- 40 to 1 </span>
+                                        <span className="text-[10px]"> Quads ---------- 30 to 1 </span>
+                                        <span className="text-[10px]"> Full House ------- 8 to 1 </span>
+                                        <span className="text-[10px]"> Flush ------------- 7 to 1 </span>
+                                        <span className="text-[10px]"> Straight ---------- 4 to 1 </span>
+                                        <span className="text-[10px]"> Trips ------------- 3 to 1 </span>
+                                    </div>
+                                </div>
 
+                                <div className="flex row-span-1 justify-center items-center">
                                     <BetCircle
                                         label="BLIND"
                                         amount={blind}
@@ -109,22 +125,27 @@ export default function App() {
                                     />
                                 </div>
 
-                                {/* 3. Zone PLAY */}
-                                <div className="flex justify-center -mt-2">
-                                    <BetCircle
-                                        label="PLAY"
-                                        amount={playBet}
-                                        color="border-gold text-gold scale-110 shadow-[0_0_20px_rgba(212,175,55,0.2)]"
-                                    />
+                                <div className="flex w-45 row-span-1">
+                                    <div className="w-10 flex items-center justify-center">
+                                        <span className="text-red-700 text-[24px] transform -rotate-90 uppercase font-bold tracking-tighter whitespace-nowrap"> B L I N D </span>
+                                    </div>
+                                    <div className="flex flex-col justify-center">
+                                        <span className="text-[10px]"> Royal Flush ----- 500 to 1 </span>
+                                        <span className="text-[10px]"> Straight Flush ---- 50 to 1 </span>
+                                        <span className="text-[10px]"> Quads ------------ 10 to 1 </span>
+                                        <span className="text-[10px]"> Full House --------- 3 to 1 </span>
+                                        <span className="text-[10px]"> Flush --------------- 3 to 2 </span>
+                                        <span className="text-[10px]"> Straight ------------ 1 to 1 </span>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
 
-
-
-                        {/* Section basse : Total de la main en cours */}
-                        <div className="mt-2 pt-4 border-t border-white/5 flex justify-between items-center">
-                            <span className="text-[10px] text-white/40 uppercase font-bold">Total engagé</span>
-                            <span className="text-sm font-black text-red-400">{(ante + blind + trips + playBet).toLocaleString()} €</span>
+                        <div className="flex justify-center items-center">
+                            <div className="items-center gap-3 flex">
+                                <span className="text-white uppercase font-bold tracking-tighter">SOLDE : </span>
+                                <span className="text-lg font-mono font-black text-white">{bankroll.toLocaleString()} €</span>
+                            </div>
                         </div>
                     </div>
                 </div>
