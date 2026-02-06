@@ -68,8 +68,8 @@ export default function App() {
     };
 
     // PREFLOP : Parier x4 / x3 ou Check
-    const playPreflop = () => {
-        const amount = ante * 4;
+    const playPreflop = (time : number) => {
+        const amount = ante * time;
         if (bankroll < amount) return;
 
         setPlayBet(amount);
@@ -400,8 +400,11 @@ export default function App() {
                             )}
                             {gameState === 'PREFLOP' && !hasPlayed && (
                                 <>
-                                    <button onClick={playPreflop} className="btn-action">
-                                        Parier x4
+                                    <button onClick={() => playPreflop(4)} className="btn-action">
+                                        x4
+                                    </button>
+                                    <button onClick={() => playPreflop(3)} className="btn-action">
+                                        x3
                                     </button>
                                     <button onClick={checkPreflop} className="btn-secondary">
                                         Check
@@ -411,7 +414,7 @@ export default function App() {
                             {gameState === 'FLOP' && !hasPlayed && (
                                 <>
                                     <button onClick={playFlop} className="btn-action">
-                                        Parier x2
+                                        x2
                                     </button>
                                     <button onClick={checkFlop} className="btn-secondary">
                                         Check
@@ -421,10 +424,10 @@ export default function App() {
                             {gameState === 'RIVER' && !hasPlayed && (
                                 <>
                                     <button onClick={playRiver} className="btn-action">
-                                        Parier x1
+                                        Play
                                     </button>
                                     <button onClick={checkRiver} className="btn-secondary">
-                                        Check
+                                        Fold
                                     </button>
                                 </>
                             )}
