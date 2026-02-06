@@ -1,10 +1,4 @@
 import {
-    LayoutGrid,
-    MessageSquare,
-    Calendar,
-    ListTodo,
-    Layers,
-    Settings,
     ChevronUp,
     ChevronDown
 } from 'lucide-react';

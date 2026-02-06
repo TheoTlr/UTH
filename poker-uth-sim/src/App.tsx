@@ -455,10 +455,13 @@ export default function App() {
                         <div className="text-xs font-bold uppercase tracking-widest text-pokerGreen/60 absolute -top-3 bg-slate-900 px-4">Table</div>
                         <div className="flex gap-3">
                             {board.map((c, i) => {
-                                const isVisible = (gameState === 'FLOP' && i < 3) || (gameState === 'RIVER' || gameState === 'SHOWDOWN');
                                 const isTurnRiver = i >= 3;
-                                if (gameState === 'PREFLOP') return <Card key={i} rank="" suit="" hidden />;
-                                if (gameState === 'FLOP' && isTurnRiver) return <Card key={i} rank="" suit="" hidden />;
+                                if (gameState === 'PREFLOP') { // @ts-ignore
+                                    return <Card key={i} rank="" suit="" hidden />;
+                                }
+                                if (gameState === 'FLOP' && isTurnRiver) { // @ts-ignore
+                                    return <Card key={i} rank="" suit="" hidden />;
+                                }
                                 return <Card key={i} rank={getRankLabel(c.rank)} suit={c.suit} />;
                             })}
                         </div>

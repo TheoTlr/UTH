@@ -6,6 +6,7 @@ export interface PlayCard {
     suit: Suit;
 }
 
+// @ts-ignore
 export enum HandRank {
     HighCard = 0,
     Pair,
