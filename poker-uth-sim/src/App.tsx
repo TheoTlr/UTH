@@ -130,7 +130,7 @@ export default function App() {
         // ===== DÉDUCTION DES MISES =====
         const totalBets = ante + blind + trips + resolvedPlayBet;
 
-        console.log('Total misé :', totalBets, ' (Ante:', ante, 'Blind:', blind, 'Trips:', trips, 'PlayBet:', resolvedPlayBet, ')');
+        console.log('Total misé :', totalBets, ' (Ante:', ante, 'Blind:', blind, 'Trips:', trips, 'PlayBet:', resolvedPlayBet, ')', 'dealer qualifies:', dealerQualifies);
 
         if (fold) {
             setBankroll(b => b - totalBets)
@@ -147,29 +147,24 @@ export default function App() {
             return
         }
 
-        let netChange = -totalBets;
+        let netChange = 0;
 
-        // ===== PLAY BET =====
-        if (resolvedPlayBet > 0 && playerWins) {
-            netChange += resolvedPlayBet * 2;
-        }
-
-        // ===== ANTE =====
         if (playerWins) {
-            netChange += dealerQualifies ? ante * 2 : ante;
-        }
-
-        // ===== BLIND =====
-        if (playerWins) {
-            const m = getBlindMultiplier(res.playerBest.rank);
-            netChange += blind * m;
-        }
-
-        // ===== TRIPS =====
-        if (trips > 0) {
+            netChange += resolvedPlayBet;
+            netChange += dealerQualifies ? ante : 0;
+            const blindrank = getBlindMultiplier(res.playerBest.rank);
+            netChange += blind * blindrank;
             const m = getTripsMultiplier(res.playerBest.rank);
-            if (m > 0) netChange += trips * (m + 1);
+            if (m > 0) netChange += trips * m; else netChange -= trips;
+        } else {
+            netChange = -totalBets;
+            const m = getTripsMultiplier(res.playerBest.rank);
+            if (m > 0) netChange += trips * m;
         }
+
+
+
+        console.log('Net change pour le joueur :', netChange);
 
         const handResult: HandRecord = {
             result: (playerWins ? 'WIN' : 'LOSS'),
@@ -204,7 +199,6 @@ export default function App() {
             case 5: return 7;
             case 4: return 4;
             case 3: return 3;
-            case 1: return 1;
             default: return 0;
         }
     };
